@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: docker://pandoc/latex:2.9
         with:
-          args: "-f docx -t markdown foo.docx -o foo.markdown" # gets appended to pandoc command
+          args: "-f docx -t markdown 黄山徒步路线体力消耗优化模型研究_蒋宇皓.docx -o foo.markdown" # gets appended to pandoc command

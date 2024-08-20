@@ -10,7 +10,11 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Convert DOCX to Markdown using Pandoc
-        uses: docker://pandoc/latex:2.9
+        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace pandoc/latex:2.9 \
+          -f docx -t markdown "黄山徒步路线体力消耗优化模型研究_蒋宇皓.docx" -o foo.markdown
+      
+      - name: Upload converted Markdown file
+        uses: actions/upload-artifact@v2
         with:
-          entrypoint: ""  # Use an empty entrypoint to avoid conflicts
-        args: "-f docx -t markdown 黄山徒步路线体力消耗优化模型研究_蒋宇皓.docx -o foo.markdown"
+          name: converted-markdown
+          path: foo.markdown
